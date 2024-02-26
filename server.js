@@ -14,10 +14,10 @@ io.on('connection', onConnected)
 function onConnected(socket) {
     console.log(socket.id)
     socketsConnected.add(socket.id)
-    io.emit('clientsTotal',socketsConnected.size)
-    socket.on('disconnected',()=>{
-        console.log("Socket Disconnected",socket.id)
+    io.emit('clientsTotal', socketsConnected.size)
+    socket.on('disconnect', () => {
+        console.log("Socket Disconnected", socket.id)
         socketsConnected.delete(socket.id)
-        io.emit('clientsTotal',socketsConnected.size)
+        io.emit('clientsTotal', socketsConnected.size)
     })
 }
