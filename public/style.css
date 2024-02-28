@@ -56,7 +56,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.messageleft ,.messageRight {
+.messageLeft ,.messageRight {
     list-style: none;
     padding: 8px 12px;
     margin: 12px;
@@ -64,7 +64,7 @@ body{
     font-size: 18px;
     word-wrap: break-word;
 }
-.messageleft {
+.messageLeft {
     border-radius: 20px 20px 20px 0px;
     align-self: flex-start;
     background-color: #fff;
@@ -79,7 +79,7 @@ body{
     box-shadow: -2px 2px #dcdcdc;
 
 }
-.messageleft > p > span ,.messageRight > p > span{
+.messageLeft > p > span ,.messageRight > p > span{
     display: block;
     font-style: italic;
     font-size: 12px;

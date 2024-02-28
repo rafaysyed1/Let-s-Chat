@@ -16,6 +16,10 @@ socket.on('clientsTotal', (data) => {
 })
 
 function sendMessage() {
+   if(messageInput.value == ''){
+      return
+   }
+    
    console.log(messageInput.value)
    const data = {
       name: nameInput.value,
@@ -29,7 +33,7 @@ function sendMessage() {
 
 
 }
-socket.on('chat-message', (data) => {
+socket.on('message', (data) => {
    console.log(data)
    addMessagetoChat(false, data)
 })
@@ -42,4 +46,9 @@ function addMessagetoChat(isownerMessage, data) {
   
 </li>`
    messageContainer.innerHTML += messageElement
+   scrollToBottom()
+}
+
+function scrollToBottom (){
+   messageContainer.scrollTo(0,messageContainer.scrollHeight)
 }
