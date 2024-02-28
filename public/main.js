@@ -16,10 +16,10 @@ socket.on('clientsTotal', (data) => {
 })
 
 function sendMessage() {
-   if(messageInput.value == ''){
+   if (messageInput.value == '') {
       return
    }
-    
+
    console.log(messageInput.value)
    const data = {
       name: nameInput.value,
@@ -39,6 +39,7 @@ socket.on('message', (data) => {
 })
 
 function addMessagetoChat(isownerMessage, data) {
+   clearFeedback()
    const messageElement = `<li class="${isownerMessage ? "messageRight" : "messageLeft"}">
    <p class="message">${data.message}
        <span>${data.name}. ${moment(data.dateTime).fromNow()}</span>
@@ -49,6 +50,53 @@ function addMessagetoChat(isownerMessage, data) {
    scrollToBottom()
 }
 
-function scrollToBottom (){
-   messageContainer.scrollTo(0,messageContainer.scrollHeight)
+function scrollToBottom() {
+   messageContainer.scrollTo(0, messageContainer.scrollHeight)
+}
+
+
+
+
+// Event listeners for message input
+messageInput.addEventListener('focus', (e) => {
+   console.log('Focus event triggered');
+   socket.emit('feedback', {
+       feedback: `${nameInput.value} is typing a message`
+   });
+});
+
+messageInput.addEventListener('keypress', (e) => {
+   socket.emit('feedback', {
+       feedback: `${nameInput.value} is typing a message`
+   });
+});
+
+messageInput.addEventListener('blur', (e) => {
+   console.log('Blur event triggered');
+   if (!isTyping) {
+       socket.emit('feedback', {
+           feedback: ''
+       });
+   }
+});
+
+
+
+
+
+
+
+socket.on('feedback', (data) => {
+   clearFeedback()
+   const feedbackElement = `<li class="messageFeedback">
+   <p class="feedback" id="feedback">${data.feedback}</p>
+</li>`
+   
+   messageContainer.innerHTML += feedbackElement
+})
+
+function clearFeedback (){
+   document.querySelectorAll('li.messageFeedback').forEach(element =>{
+      element.parentNode.removeChild(element)
+   })
 }
