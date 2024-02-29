@@ -54,31 +54,40 @@ function scrollToBottom() {
    messageContainer.scrollTo(0, messageContainer.scrollHeight)
 }
 
-
-
+// Event listener for message input
+messageInput.addEventListener('input', (e) => {
+   if (messageInput.value.length > 50) {
+      console.log(`${nameInput.value} is typing a long message...`);
+      socket.emit('feedback', {
+         feedback: `${nameInput.value} is typing a long message...`
+      });
+   } else if (messageInput.value !== "") {
+      console.log(`${nameInput.value} is typing a message...`);
+      socket.emit('feedback', {
+         feedback: `${nameInput.value} is typing a message...`
+      });
+   } else {
+      console.log(`Ahh.. ${nameInput.value} is confused...`);
+      socket.emit('feedback', {
+         feedback: `Ah...${nameInput.value} is confused...`
+      });
+   }
+});
 
 // Event listeners for message input
 messageInput.addEventListener('focus', (e) => {
    console.log('Focus event triggered');
    socket.emit('feedback', {
-       feedback: `${nameInput.value} is typing a message`
+      feedback: `${nameInput.value} is typing a message`
    });
 });
-
-messageInput.addEventListener('keypress', (e) => {
-   socket.emit('feedback', {
-       feedback: `${nameInput.value} is typing a message`
-   });
-});
-
 messageInput.addEventListener('blur', (e) => {
-   console.log('Blur event triggered');
-   if (!isTyping) {
-       socket.emit('feedback', {
-           feedback: ''
-       });
-   }
+   console.log("Blur event triggered")
+   socket.emit('feedback', {
+      feedback: `${nameInput.value} is online`
+   });
 });
+
 
 
 
@@ -91,7 +100,7 @@ socket.on('feedback', (data) => {
    const feedbackElement = `<li class="messageFeedback">
    <p class="feedback" id="feedback">${data.feedback}</p>
 </li>`
-   
+
    messageContainer.innerHTML += feedbackElement
 })
 
