@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+   
+}
+a{
+    color: black;
+    text-decoration: underline;
 }
 
 body{
@@ -74,7 +79,7 @@ body{
 .messageRight {
     border-radius: 20px 20px 0px 20px;
     align-self: flex-end;
-    background-color: #2d2d2d;
+    background-color: green;
     color: #f6f6f6;
     box-shadow: -2px 2px #dcdcdc;
 
@@ -126,3 +131,26 @@ body{
     color: #7e7e7e;
 
 }
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    color: black;
+    text-align: center;
+    background-color: rgba(17, 14, 14, 0.136);
+}
+.links{
+    padding-left: 10px;
+}
+
+.linkedin .fa-linkedin,
+.linkedin .linked_link {
+    padding-left: 5px;
+}
+
+.linkedin .fa-linkedin{
+    color: blue;
+}
+
