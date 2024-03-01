@@ -6,6 +6,8 @@ const nameInput = document.getElementById('nameInput')
 const messageForm = document.getElementById('messageForm')
 const messageInput = document.getElementById('messageInput')
 
+const messageTone = new Audio('/whistle.mp3')
+
 messageForm.addEventListener('submit', (e) => {
    e.preventDefault()
    sendMessage()
@@ -39,6 +41,7 @@ socket.on('message', (data) => {
 })
 
 function addMessagetoChat(isownerMessage, data) {
+   messageTone.play()
    clearFeedback()
    const messageElement = `<li class="${isownerMessage ? "messageRight" : "messageLeft"}">
    <p class="message">${data.message}
