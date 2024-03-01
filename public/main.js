@@ -40,10 +40,13 @@ socket.on('message', (data) => {
    addMessagetoChat(false, data)
 })
 
-function addMessagetoChat(isownerMessage, data) {
-   messageTone.play()
+function addMessagetoChat(isOwnerMessage, data) {
+   
+   if (!isOwnerMessage) {
+      messageTone.play(); 
+  }
    clearFeedback()
-   const messageElement = `<li class="${isownerMessage ? "messageRight" : "messageLeft"}">
+   const messageElement = `<li class="${isOwnerMessage ? "messageRight" : "messageLeft"}">
    <p class="message">${data.message}
        <span>${data.name}. ${moment(data.dateTime).fromNow()}</span>
    </p>
