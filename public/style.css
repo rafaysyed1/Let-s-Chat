@@ -1,16 +1,16 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-   
 }
-a{
+
+a {
     color: black;
     text-decoration: underline;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,92 +18,100 @@ body{
     background-color: #ebebeb;
 }
 
-.title{
+.title {
     margin: 20px 0;
 }
-.main{
+
+.main {
     border: 8px solid #dddddd;
     border-radius: 24px;
     overflow: hidden;
+    width: 100%; /* Occupy full width */
+    max-width: 600px; /* Limit maximum width for better readability on larger screens */
 }
 
-.name{
-    display:  flex;
+.name {
+    display: flex;
     font-size: 32px;
     font-weight: 700;
     padding: 8px 16px;
-    color : #7e7e7e;
+    color: #7e7e7e;
     background-color: #ebebeb;
 }
 
 .name > span {
-    color : #bbb;
-
+    color: #bbb;
 }
 
-.nameInput{
+.nameInput {
     font-size: 24px;
     font-weight: 700;
-    color : #7e7e7e;
+    color: #7e7e7e;
     flex-grow: 1;
     border: none;
-    margin:0px 12px;
+    margin: 0px 12px;
     outline: none;
     background-color: #ebebeb;
 }
 
-.messageContainer{
+.messageContainer {
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
     background-color: #f6f6f6;
-    width: 400px;
-    height: 600px;
-    overflow-y: scroll;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto; /* Enable scrolling if content exceeds max height */
     overflow-x: hidden;
 }
-.messageLeft ,.messageRight {
+
+.messageLeft,
+.messageRight {
     list-style: none;
     padding: 8px 12px;
     margin: 12px;
-    max-width: 250px;
+    max-width: 70%; /* Adjust maximum width for better responsiveness */
     font-size: 18px;
     word-wrap: break-word;
 }
+
 .messageLeft {
     border-radius: 20px 20px 20px 0px;
     align-self: flex-start;
     background-color: #fff;
     box-shadow: -2px 2px #dcdcdc;
-
 }
+
 .messageRight {
     border-radius: 20px 20px 0px 20px;
     align-self: flex-end;
     background-color: green;
     color: #f6f6f6;
     box-shadow: -2px 2px #dcdcdc;
-
 }
-.messageLeft > p > span ,.messageRight > p > span{
+
+.messageLeft > p > span,
+.messageRight > p > span {
     display: block;
     font-style: italic;
     font-size: 12px;
     margin-top: 4px;
 }
-.messageFeedback{
+
+.messageFeedback {
     font-style: italic;
     font-size: 14px;
     padding: 0px 16px 16px 16px;
     color: #2d2d2d;
     text-align: center;
 }
+
 .messageForm {
     display: flex;
     justify-content: space-between;
-    width: 400px;
-
+    width: 100%; /* Occupy full width */
 }
-.messageInput{
+
+.messageInput {
     flex-grow: 1;
     height: 48px;
     font-size: 16px;
@@ -112,6 +120,7 @@ body{
     padding: 0 12px;
     background-color: #fff;
 }
+
 .sendButton {
     height: 48px;
     font-size: 16px;
@@ -121,18 +130,15 @@ body{
     background-color: #fff;
     cursor: pointer;
 }
-.vDivider{
-    height: 48px;
-    width: 2px;
-    background-color: #f6f6f6;
-}
-.clientsTotal{
+
+.clientsTotal {
     margin: 20px 0;
     color: #7e7e7e;
-
 }
-.footer{
+
+.footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -141,16 +147,43 @@ body{
     text-align: center;
     background-color: rgba(17, 14, 14, 0.136);
 }
-.links{
-    padding-left: 10px;
+.copyright {
+    display: flex;
+    flex-direction: column;
 }
 
-.linkedin .fa-linkedin,
-.linkedin .linked_link {
+.links {
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links .fa-linkedin,
+.links .linked_link {
     padding-left: 5px;
 }
 
-.linkedin .fa-linkedin{
+.links .fa-linkedin {
     color: blue;
 }
 
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .name {
+        font-size: 24px; /* Decrease font size for smaller screens */
+    }
+    .footer{
+     display: flex;
+     flex-direction: column;
+     
+    }
+
+    .nameInput {
+        font-size: 18px; /* Decrease font size for smaller screens */
+    }
+
+    .messageLeft,
+    .messageRight {
+        max-width: 90%; /* Adjust maximum width for smaller screens */
+    }
+}
