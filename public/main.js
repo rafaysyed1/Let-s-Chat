@@ -41,9 +41,13 @@ socket.on('message', (data) => {
 })
 
 function addMessagetoChat(isOwnerMessage, data) {
-   
+   //Check for only playing sound on recieving a message not on sending
    if (!isOwnerMessage) {
       messageTone.play(); 
+  }
+  // Logic to have name as 'you' when a person sends the message
+  if(isOwnerMessage){
+   data.name = 'You'
   }
    clearFeedback()
    const messageElement = `<li class="${isOwnerMessage ? "messageRight" : "messageLeft"}">
