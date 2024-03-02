@@ -16,10 +16,13 @@ function onConnected(socket) {
     socketsConnected.add(socket.id)
     io.emit('clientsTotal', socketsConnected.size)
     socket.on('disconnect', () => {
-        console.log("Socket Disconnected", socket.id)
-        socketsConnected.delete(socket.id)
-        io.emit('clientsTotal', socketsConnected.size)
-    })
+        console.log("Socket Disconnected", socket.id);
+        socketsConnected.delete(socket.id);
+        io.emit('clientsTotal', socketsConnected.size);
+        // Emit a message to the client side indicating disconnection
+        io.emit('userDisconnected', { userId: socket.id });
+    });
+    
     socket.on('message', (data)=>{
         console.log(data)
         socket.broadcast.emit('message',data)

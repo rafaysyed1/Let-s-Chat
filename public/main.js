@@ -114,6 +114,19 @@ socket.on('feedback', (data) => {
    messageContainer.innerHTML += feedbackElement
 })
 
+socket.on('userDisconnected', (data) => {
+   clearFeedback();
+   const feedbackMessage = `${nameInput.value} is disconnected`;
+   socket.emit('feedback', {
+      feedback: feedbackMessage
+   });
+   const feedbackElement = `<li class="messageFeedback">
+   <p class="feedback" id="feedback">${feedbackMessage}</p>
+</li>`;
+   messageContainer.innerHTML += feedbackElement;
+});
+
+
 function clearFeedback (){
    document.querySelectorAll('li.messageFeedback').forEach(element =>{
       element.parentNode.removeChild(element)
